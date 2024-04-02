@@ -11,10 +11,18 @@ export  const TaskSlice = createSlice({
         addTask:(state,action)=>{
             const task ={
                 id: nanoid(),
-                text: action.payload
+                text: action.payload,
+                completed: false
             }
             state.tasks.push(task)
         },
+        toggleComplete: (state, action) => {
+            const taskToUpdate = state.tasks.find(task => task.id === action.payload);
+            if (taskToUpdate) {
+                taskToUpdate.completed = !taskToUpdate.completed;
+            }
+        }
+,        
         deleteTask :(state,action)=>{
             state.tasks = state.tasks.filter((task) => task.id !== action.payload )
         }

@@ -7,8 +7,10 @@ const TaskInput = () => {
    const dispatch = useDispatch()
 const [task, setTask] = useState('')
 const addTaskHandler =()=>{
+  if(task){
     dispatch(addTask(task))
     setTask('')
+  }
 }
   return (
     <div>
